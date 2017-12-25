@@ -1,7 +1,8 @@
 IUP 是一个跨平台的 GUI 库
 
 iupmingw 是云风（cloudwu）提供的简化编译IUP的工程，适用于mingw的 Makefile，https://github.com/cloudwu/iupmingw 。
-但我并不是使用windows版mingw，使用的是win10的bash on windows来编译，在编译过程中碰到了一些问题，所以另建了一个仓库来管理。
+
+但我并不是使用windows版mingw，使用的是win10的bash on windows来编译，在编译过程中碰到了一些问题，目前还存在multiple Lua VMs detected问题。
 
 先从 svn 仓库获取 IUP 源码（我使用的 Revision: 4366 ）：
 
