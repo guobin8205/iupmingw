@@ -1,12 +1,23 @@
 ODIR = o
 IUPSRC = ..
-LUAINC = -I/usr/local/include
 #LUALIB = -L/usr/local/lib -llua
+
+ifeq ($(shell uname), Linux)
+LUAINC = -I/usr/local/mingw64/lua5.3/include
+LUALIB = -L/usr/local/mingw64/lua5.3 -llua53
+LUABIN = /usr/bin/lua
+else
+LUAINC = -I/usr/local/include
 LUALIB = -L/usr/local/bin -llua53
 LUABIN = /usr/local/bin/lua.exe
+endif
 
 AR= ar rcu
+ifeq ($(shell uname), Linux)
+CC= x86_64-w64-mingw32-gcc
+else
 CC= gcc
+endif
 
 INCLUDES = include src
 INCLUDES += src/win
@@ -114,7 +125,7 @@ luaiup.dll : $(OBJIUP) $(OBJWIN) $(OBJIUPLUA) $(OBJCTRL)
 	$(CC) --shared -o $@ $^ -lgdi32 -lcomdlg32 -lcomctl32 -lole32 -luuid $(LUALIB)
 
 iup.exe : iupmain.c | luaiup.dll
-	gcc $(CFLAGS) -o $@ $^ -I$(IUPSRC)/include $(LUAINC) $(LUALIB) -L. -lluaiup -mwindows
+	$(CC) $(CFLAGS) -o $@ $^ -I$(IUPSRC)/include $(LUAINC) $(LUALIB) -L. -lluaiup -mwindows
 
 clean :
 	rm -rf $(ODIR) && rm -f *.exe && rm -f *.dll

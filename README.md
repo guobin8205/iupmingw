@@ -1,11 +1,8 @@
-IUP all in one for mingw
-=====
+IUP 是一个跨平台的 GUI 库
 
-IUP http://webserver2.tecgraf.puc-rio.br/iup/ 是一个跨平台的 GUI 库，对 Lua 支持非常好。
+iupmingw 是云风（cloudwu）提供的简化编译IUP的工程，适用于mingw的 Makefile，https://github.com/cloudwu/iupmingw 。
 
-不过它编译起来很麻烦，编译好的版本文件很多，为了自己方便，我创建了这个适用于 mingw 的 Makefile 。
-
-先从 svn 仓库获取 IUP 源码（我使用的 Revision: 4360 ）：
+先从 svn 仓库获取 IUP 源码（我使用的 Revision: 4366 ）：
 
 ```
 svn co https://svn.code.sf.net/p/iup/iup/trunk/iup iup
@@ -14,14 +11,19 @@ svn co https://svn.code.sf.net/p/iup/iup/trunk/iup iup
 然后在 iup 目录下 clone 本仓库
 
 ```
-git clone https://github.com/cloudwu/iupmingw.git mingw
+git clone https://github.com/guobin8205/iupmingw.git mingw
 ```
 
-保证安装了 lua ，确认 Makefile 中设置了正确 lua 的 include lib bin 路径，最后 make 。
+安装ubuntu mignw-w64版本
+```
+sudo apt-get install mingw-w64
+```
 
-你也可以在 https://github.com/cloudwu/iupmingw/releases 下载我编译好的版本。
 
-生成 iup.exe 后，就可以玩了：
+下载lua5.3的mingw4 64位版本，解压到某个目录，并设置 lua 的 include lib 路径然后make
+```
+https://jaist.dl.sourceforge.net/project/luabinaries/5.3.3/Windows%20Libraries/Static/lua-5.3.3_Win64_mingw4_lib.zip
+```
 
 ```
 iup simplenotepad.lua

@@ -1,10 +1,23 @@
 ODIR = o
 IUPSRC = ..
-CXX = g++
-CC = gcc
+#CXX = g++
+#CC = gcc
+#LUAINC = -I/usr/local/include
+#LUALIB = -L/usr/local/bin -llua53
+#LUABIN = /usr/local/bin/lua.exe
+ifeq ($(shell uname), Linux)
+LUAINC = -I/usr/local/mingw64/lua5.3/include
+LUALIB = -L/usr/local/mingw64/lua5.3 -llua53
+LUABIN = /usr/bin/lua
+CXX = x86_64-w64-mingw32-g++
+CC= x86_64-w64-mingw32-gcc
+else
 LUAINC = -I/usr/local/include
 LUALIB = -L/usr/local/bin -llua53
 LUABIN = /usr/local/bin/lua.exe
+CXX = g++
+CC = gcc
+endif
 
 CFLAGS = -O2 -Wall
 CXXFLAGS = --std=c++11 $(CFLAGS)
