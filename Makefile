@@ -3,8 +3,8 @@ IUPSRC = ..
 #LUALIB = -L/usr/local/lib -llua
 
 ifeq ($(shell uname), Linux)
-LUAINC = -I/usr/local/mingw64/lua5.3/include
-LUALIB = -L/usr/local/mingw64/lua5.3 -llua53
+LUAINC = -I/usr/local/mingw64/lua53/include
+LUALIB = -L/usr/local/mingw64/lua53 -llua53
 LUABIN = /usr/bin/lua
 else
 LUAINC = -I/usr/local/include
@@ -123,7 +123,7 @@ iupluaimglib.dll :
 
 luaiup.dll : $(OBJIUP) $(OBJWIN) $(OBJIUPLUA) $(OBJCTRL) 
 	$(CC) --shared -o $@ $^ -lgdi32 -lcomdlg32 -lcomctl32 -lole32 -luuid $(LUALIB)
-
+# -liup -lgdi32 -lcomdlg32 -lcomctl32 -luuid -loleaut32 -lole32
 iup.exe : iupmain.c | luaiup.dll
 	$(CC) $(CFLAGS) -o $@ $^ -I$(IUPSRC)/include $(LUAINC) $(LUALIB) -L. -lluaiup -mwindows
 
