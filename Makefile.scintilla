@@ -102,9 +102,6 @@ COMPILE = $(CXX) $(CXXFLAGS) -c -o $@ $< $(INCLUDES) $(DEFINES)
 
 all : scintilla.dll
 
-scintilla.dll :  $(OBJSCINTILLA) $(OBJSCI_LEXERS) $(OBJSCI_LEXLIB) $(OBJSCI_WIN) $(OBJIUPSCI) $(ILO) $(ODIR)/luascintilla.o
-	$(CXX) --shared -o $@ $^ -lstdc++ -lgdi32 -lmsimg32 -limm32 -lole32 -luuid -lcomdlg32 -loleaut32 -L. -lluaiup $(LUALIB)
-
 $(ODIR) :
 	mkdir $@
 
@@ -128,3 +125,6 @@ $(ILO) : $(ODIR)/il_%.o : $(IUPSRC)/srclua5/ctrl/il_%.c $(IUPSRC)/srclua5/lh/%.l
 
 $(ODIR)/luascintilla.o : luascintilla.c
 	$(CC) $(CFLAGS) -c -o $@ $< $(LUAINC)
+
+scintilla.dll :  $(OBJSCINTILLA) $(OBJSCI_LEXERS) $(OBJSCI_LEXLIB) $(OBJSCI_WIN) $(OBJIUPSCI) $(ILO) $(ODIR)/luascintilla.o
+	$(CXX) --shared -o $@ $^ -lstdc++ -lgdi32 -lmsimg32 -limm32 -lole32 -luuid -lcomdlg32 -loleaut32 -L. -lluaiup $(LUALIB)

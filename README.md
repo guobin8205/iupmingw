@@ -27,11 +27,17 @@ sudo apt-get install mingw-w64
 https://jaist.dl.sourceforge.net/project/luabinaries/5.3.3/Windows%20Libraries/Static/lua-5.3.3_Win64_mingw4_lib.zip
 ```
 
+编译出来的库需要能找到lua53.dll的库，就是你下载的库。
+如果你用到scintilla这个组件，它内部需要
+libstdc++-6.dll
+libgcc_s_seh-1.dll
+libwinpthread-1.dll
+这些库的支持,这几个可以在mingw64里面找到。
+编译完的release版本我已经放到bin目录里，enjoy it!
 ```
-iup main.lua
+iup ../main.lua
 
-iup simplenotepad.lua
+iup ../simplenotepad.lua
 
 ```
-目前运行示例出现error loading module 'scintilla' from file，而我在scintilla的代码里没有看到luaopen的载入代码，
-不知道是不是这个编译出来的dll是否能顺利加载。
+
